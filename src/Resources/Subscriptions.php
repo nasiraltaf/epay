@@ -40,9 +40,11 @@ class Subscriptions extends Resource
      * @param  object $options contenten update
      * @return object
      */
-    public function update($id, $options = null,$type = "basic")
+    public function update($options = null,$type = "basic")
     {
+        dd($type);
         switch ($type){
+
             case "basic":
                 //TODO: update basic subscription in development
                 return null;
@@ -50,7 +52,7 @@ class Subscriptions extends Resource
             case "domiciliacion":
                 return $this->request(
                     "POST",
-                    "recurring/v1/subscription/domiciliacion/edit/" . $id . "/" . $this->epayco->api_key,
+                    "/recurring/v1/subscription/domiciliacion/edit/" . $this->epayco->api_key,
                     $api_key = $this->epayco->api_key,
                     $options,
                     $private_key = $this->epayco->private_key,
